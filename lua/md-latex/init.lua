@@ -1,27 +1,39 @@
 local M = {}
 
-M.config = {
-	enabled = true,
-	message = "test",
+--lookup table
+local check = {
+	displayed_equation = true,
 }
 
-M.setup = function(config)
-	config = config or {}
-	M.config = vim.tbl_deep_extend("force", M.config, config)
-end
-
-M.say_hello = function()
-	if M.config.enabled then
-		print(M.config.message)
-	else
-		print("plugin is disabled")
+---@return boolean
+M.is_math = function()
+	local node = vim.treesitter.get_node({ ignore_injections = false })
+	while node do
+		if check[node:type()] then
+			return true
+		end
+		node = node:parent()
 	end
+	return false
 end
 
-vim.schedule(function()
-	vim.api.nvim_create_user_command("MyPluginHello", function()
-		M.say_hello()
-	end, {})
-end)
+M.setup = function()
+	require("luasnip").config.setup({
+		enable_autosnippets = true,
+	})
+
+	local ls = require("luasnip")
+	local dirs = {
+		"markdown",
+		"symbols",
+		"operations",
+	}
+	local table = {}
+	for _, dir in ipairs(dirs) do
+		local itable = require("md-latex.snippets." .. dir)
+		table = vim.list_extend(table, itable)
+	end
+	ls.add_snippets("markdown", table, {})
+end
 
 return M
