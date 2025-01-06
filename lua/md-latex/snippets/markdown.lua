@@ -11,7 +11,7 @@ end
 return {
 	s(
 		{
-			trig = "mpb",
+			trig = "pb",
 			desc = "Python Code Block",
 			snippetType = "autosnippet",
 			condition = not_math,
@@ -45,6 +45,22 @@ return {
   $$
   <>
   ]],
+			{ i(1), i(2) },
+			{ delimiters = "<>" }
+		)
+	),
+
+	s(
+		{
+			trig = "mk",
+			desc = "Math inline",
+			snippetType = "autosnippet",
+			condition = not_math,
+		},
+		fmt(
+			[[
+    $<>$<>
+    ]],
 			{ i(1), i(2) },
 			{ delimiters = "<>" }
 		)

@@ -6,7 +6,7 @@ local i = ls.insert_node
 local is_math = require("md-latex").is_math
 
 local sc = function(trig, text)
-	return s({ trig = trig, snippetType = "autosnippet", condition = is_math }, { t(text), i(1) })
+	return s({ trig = trig, snippetType = "autosnippet", condition = is_math, wordTrig = false }, { t(text), i(1) })
 end
 
 return {
@@ -32,4 +32,8 @@ return {
 	sc(";U", "\\Upsilon"),
 	sc(";o", "\\omega"),
 	sc(";O", "\\Omega"),
+	sc("pi", "\\pi"),
+	sc("tau", "\\tau"),
+	sc(";p", "\\phi"),
+	sc(";P", "\\Phi"),
 }

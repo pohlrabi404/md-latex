@@ -86,4 +86,13 @@ return {
 			i(0),
 		})
 	),
+
+	-- trig
+	sc({ trig = "cos", wordTrig = true }, fmta([[\cos(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "sin", wordTrig = true }, fmta([[\sin(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "tan", wordTrig = true }, fmta([[\tan(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "cot", wordTrig = true }, fmta([[\cot(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "acos", wordTrig = true }, fmta([[\arccos(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "asin", wordTrig = true }, fmta([[\arcsin(<>)<>]], { i(1), i(0) })),
+	sc({ trig = "atan", wordTrig = true }, fmta([[\arctan(<>)<>]], { i(1), i(0) })),
 }

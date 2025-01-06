@@ -3,6 +3,7 @@ local M = {}
 --lookup table
 local check = {
 	displayed_equation = true,
+	inline_formula = true,
 }
 
 ---@return boolean
