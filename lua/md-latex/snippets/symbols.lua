@@ -53,4 +53,7 @@ return {
 	sc("Phi", "\\Phi"),
 	sc("Psi", "\\Psi"),
 	sc("Ome", "\\Omega"),
+
+	-- others
+	sc("inf", "\\infty"),
 }
