@@ -12,11 +12,12 @@ local sc = function(context, nodes, opts)
 end
 
 return {
+
 	-- Fraction
 	sc({ trig = "//" }, fmta([[ \frac{<>}{<>}<>]], { i(1), i(2), i(0) })),
-	-- function case
+	-- normal case
 	sc(
-		{ trig = "(\\[^)%s]+)/", regTrig = true },
+		{ trig = "([^)%s]+)/", regTrig = true },
 		fmta([[\frac{<>}{<>}<>]], {
 			f(function(_, snip)
 				return snip.captures[1]
@@ -25,9 +26,9 @@ return {
 			i(0),
 		})
 	),
-	-- normal case
+	-- function case
 	sc(
-		{ trig = "([^)%s]+)/", regTrig = true },
+		{ trig = "(\\[^)%s]+)/", regTrig = true },
 		fmta([[\frac{<>}{<>}<>]], {
 			f(function(_, snip)
 				return snip.captures[1]
@@ -95,4 +96,26 @@ return {
 	sc({ trig = "acos", wordTrig = true }, fmta([[\arccos(<>)<>]], { i(1), i(0) })),
 	sc({ trig = "asin", wordTrig = true }, fmta([[\arcsin(<>)<>]], { i(1), i(0) })),
 	sc({ trig = "atan", wordTrig = true }, fmta([[\arctan(<>)<>]], { i(1), i(0) })),
+
+	-- integral
+	sc(
+		{ trig = "int", wordTrig = true },
+		fmta(
+			[[
+    \int_{<> = <>}^{<>} <>
+    ]],
+			{ i(1, "n"), i(2, "0"), i(3, "\\infty"), i(0) }
+		)
+	),
+
+	-- sum
+	sc(
+		{ trig = "sum", wordTrig = true },
+		fmta(
+			[[
+    \sum_{<> = <>}^{<>} <>
+    ]],
+			{ i(1, "n"), i(2, "0"), i(3, "\\infty"), i(0) }
+		)
+	),
 }
