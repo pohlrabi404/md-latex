@@ -8,6 +8,9 @@ local check = {
 
 ---@return boolean
 M.is_math = function()
+	if not vim.treesitter.get_parser() then
+		return false
+	end
 	local node = vim.treesitter.get_node({ ignore_injections = false })
 	while node do
 		if check[node:type()] then
