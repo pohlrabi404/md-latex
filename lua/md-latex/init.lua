@@ -6,9 +6,20 @@ local check = {
 	inline_formula = true,
 }
 
+M.is_treesitter_available = function()
+	local ok, _ = pcall(require, "nvim-treesitter")
+	if not ok then
+		return false
+	end
+
+	local ft = vim.bo.filetype
+	local parsers = require("nvim-treesitter.parsers")
+	return parsers.has_parser(ft)
+end
+
 ---@return boolean
 M.is_math = function()
-	if not vim.treesitter.get_parser() then
+	if not M.is_treesitter_available() then
 		return false
 	end
 	local node = vim.treesitter.get_node({ ignore_injections = false })
