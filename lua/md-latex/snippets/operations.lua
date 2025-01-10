@@ -102,9 +102,9 @@ return {
 		{ trig = "int", wordTrig = true },
 		fmta(
 			[[
-    \int_{<> = <>}^{<>} <>
+    \int_{<>}^{<>} <>
     ]],
-			{ i(1, "n"), i(2, "0"), i(3, "\\infty"), i(0) }
+			{ i(1, "-\\infty"), i(2, "\\infty"), i(0) }
 		)
 	),
 
