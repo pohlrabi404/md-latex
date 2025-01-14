@@ -118,4 +118,33 @@ return {
 			{ i(1, "n"), i(2, "0"), i(3, "\\infty"), i(0) }
 		)
 	),
+
+	-- square root
+	sc(
+		{ trig = "sq", wordTrig = true },
+		fmta(
+			[[
+    \sqrt{<>}<>
+    ]],
+			{ i(1), i(0) }
+		)
+	),
+
+	-- hat
+	sc(
+		{ trig = "(%a)hat", regTrig = true },
+		fmta([[\hat{<>}<>]], {
+			f(function(_, snip)
+				return snip.captures[1]
+			end),
+			i(0),
+		})
+	),
+	sc(
+		{ trig = "hat", wordTrig = true },
+		fmta([[\hat{<>}<>]], {
+			i(1),
+			i(0),
+		})
+	),
 }
